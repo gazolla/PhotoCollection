@@ -79,7 +79,10 @@ class PhotosViewController: UIViewController, UICollectionViewDelegateFlowLayout
     
     //PRAGMA MARK: Business Method
     func processJSON(){
-        let url : NSURL = NSURL(string: "https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=14359770c1efac8f7e01537aa0e13169&user_id=47776579%40N08&extras=url_m&format=json&nojsoncallback=1")!
+        
+        let apiKey = "14359770c1efac8f7e01537aa0e13169"
+        let userid = "47776579%40N0"
+        let url : NSURL = NSURL(string: "https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=\(apiKey)&user_id=\(userid)8&extras=url_m&format=json&nojsoncallback=1")!
         let request: NSURLRequest = NSURLRequest(URL: url)
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()
         let session = NSURLSession(configuration: config)
@@ -103,11 +106,28 @@ class PhotosViewController: UIViewController, UICollectionViewDelegateFlowLayout
             
             do {
                 let jsonArray = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
-                 if let photos = jsonArray["photos"]  {
-                    if let photo = photos!["photo"] as? NSArray{
+                 if let photos = jsonArray["photos"] as? NSDictionary{
+                    if let photo = photos["photo"] as? NSArray{
                         for ph in photo {
                             if let imgUrl = ph["url_m"] as? String {
                                 self.items.append(imgUrl)
+                            }
+                        }
+                    }
+                 } else {
+                    if let stat = jsonArray["stat"] as? String {
+                        if let code = jsonArray["code"] as? Int {
+                            if let message = jsonArray["message"] as? String{
+                                let alertController = UIAlertController(title: stat, message: "code:\(code) - \(message)", preferredStyle: .Alert)
+                                let okAction = UIAlertAction(title: "ok", style: .Default, handler: { (alert:UIAlertAction) -> Void in
+                                    alertController.dismissViewControllerAnimated(true, completion: {})
+                                })
+                                
+                                alertController.addAction(okAction)
+                                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                    self.presentViewController(alertController, animated: true, completion: {})
+                                })
+                                
                             }
                         }
                     }
