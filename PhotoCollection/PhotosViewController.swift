@@ -106,7 +106,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegateFlowLayout
             
             do {
                 let jsonArray = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
-                 if let photos = jsonArray["photos"] as? NSDictionary{
+                if let photos = jsonArray["photos"] as? NSDictionary{
                     if let photo = photos["photo"] as? NSArray{
                         for ph in photo {
                             if let imgUrl = ph["url_m"] as? String {
@@ -114,7 +114,7 @@ class PhotosViewController: UIViewController, UICollectionViewDelegateFlowLayout
                             }
                         }
                     }
-                 } else {
+                } else {
                     if let stat = jsonArray["stat"] as? String {
                         if let code = jsonArray["code"] as? Int {
                             if let message = jsonArray["message"] as? String{
