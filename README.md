@@ -1,7 +1,7 @@
 # PhotoCollection
 How to load JSON data from Flickr and load photos to a CollectionView programmatically using Swift 2 
 
-![](https://github.com/gazolla/PhotoCollection/raw/master/ScreenShot.png)
+![](https://github.com/gazolla/PhotoCollection/raw/master/screenshot.png)
 
 ### Contact
 
