@@ -10,6 +10,12 @@ import UIKit
 
 class PhotoCell: UICollectionViewCell {
     
+    var photo:Photo? {
+        didSet{
+            loadImage(photo!.imgUrl!)
+        }
+    }
+    
     lazy var imageView:UIImageView = {
         let iv = UIImageView()
         iv.contentMode = UIViewContentMode.ScaleAspectFit
@@ -34,5 +40,15 @@ class PhotoCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         self.imageView.image = nil
+    }
+    
+    func loadImage(named:String){
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { () -> Void in
+            let image = UIImage(data: NSData(contentsOfURL: NSURL(string: named)!)!)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.imageView.image = image
+            })
+        }
+
     }
 }

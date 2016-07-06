@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0800336C1D2C8BB5003E31B2 /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0800336B1D2C8BB5003E31B2 /* HTTP.swift */; };
+		0800336E1D2C8BC6003E31B2 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0800336D1D2C8BC6003E31B2 /* Photo.swift */; };
 		08CA8DE81C53A8A000D6E158 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08CA8DE71C53A8A000D6E158 /* AppDelegate.swift */; };
 		08CA8DEA1C53A8A000D6E158 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08CA8DE91C53A8A000D6E158 /* Assets.xcassets */; };
 		08CA8DED1C53A8A000D6E158 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08CA8DEB1C53A8A000D6E158 /* LaunchScreen.storyboard */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0800336B1D2C8BB5003E31B2 /* HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
+		0800336D1D2C8BC6003E31B2 /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		08CA8DE41C53A8A000D6E158 /* PhotoCollection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoCollection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08CA8DE71C53A8A000D6E158 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08CA8DE91C53A8A000D6E158 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -97,12 +101,14 @@
 		08CA8DE61C53A8A000D6E158 /* PhotoCollection */ = {
 			isa = PBXGroup;
 			children = (
+				0800336B1D2C8BB5003E31B2 /* HTTP.swift */,
 				08CA8DE71C53A8A000D6E158 /* AppDelegate.swift */,
 				08CA8DE91C53A8A000D6E158 /* Assets.xcassets */,
 				08CA8DEB1C53A8A000D6E158 /* LaunchScreen.storyboard */,
 				08CA8DEE1C53A8A000D6E158 /* Info.plist */,
 				08CA8E101C53A8B200D6E158 /* PhotosViewController.swift */,
 				08CA8E121C53AC3700D6E158 /* PhotoCell.swift */,
+				0800336D1D2C8BC6003E31B2 /* Photo.swift */,
 			);
 			path = PhotoCollection;
 			sourceTree = "<group>";
@@ -256,8 +262,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				08CA8DE81C53A8A000D6E158 /* AppDelegate.swift in Sources */,
+				0800336C1D2C8BB5003E31B2 /* HTTP.swift in Sources */,
 				08CA8E131C53AC3700D6E158 /* PhotoCell.swift in Sources */,
 				08CA8E111C53A8B200D6E158 /* PhotosViewController.swift in Sources */,
+				0800336E1D2C8BC6003E31B2 /* Photo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +484,7 @@
 				08CA8E091C53A8A100D6E158 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		08CA8E0A1C53A8A100D6E158 /* Build configuration list for PBXNativeTarget "PhotoCollectionTests" */ = {
 			isa = XCConfigurationList;
@@ -484,6 +493,7 @@
 				08CA8E0C1C53A8A100D6E158 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		08CA8E0D1C53A8A100D6E158 /* Build configuration list for PBXNativeTarget "PhotoCollectionUITests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +502,7 @@
 				08CA8E0F1C53A8A100D6E158 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

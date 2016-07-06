@@ -17,7 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         let main = PhotosViewController()
-        let nav = UINavigationController(rootViewController: main)
+
+        Photo.load { (error, items) in
+            dispatch_async(dispatch_get_main_queue(), { 
+                if let items = items {
+                    main.items = items
+                }
+                if let error = error {
+                    main.error = error
+                }
+            })
+        }
+        
+        let nav = UINavigationController(rootViewController: main)        
         self.window!.rootViewController = nav
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.makeKeyAndVisible()
