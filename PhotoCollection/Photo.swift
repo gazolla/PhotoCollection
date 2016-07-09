@@ -30,7 +30,7 @@ public class Photo {
 
     static func load(completion:(error:NSError?, items:[Photo]?)->Void){
         
-        let apiKey = "INSERT_YOUR_API_KEY_HERE"
+        let apiKey = "77c04c4b51f16e4fbed69b050cea4b2b"
         let userid = "24858431@N07"
         let urlString = "https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=\(apiKey)&user_id=\(userid)&extras=url_m&format=json&nojsoncallback=1"
 

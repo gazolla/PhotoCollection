@@ -51,8 +51,12 @@ class PhotosViewController: UIViewController, UICollectionViewDelegateFlowLayout
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! PhotoCell
-        let photo = self.items[indexPath.row]
-        cell.photo = photo
+        cell.photo = self.items[indexPath.row]
+        cell.loadImage { image in
+            if let myCell = collectionView.cellForItemAtIndexPath(indexPath) as? PhotoCell {
+                myCell.imageView.image = image
+            }
+        }
         return cell
     }
     

@@ -12,9 +12,16 @@ class PhotoCell: UICollectionViewCell {
     
     var photo:Photo? {
         didSet{
-            loadImage(photo!.imgUrl!)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                self.activityIndicator.startAnimating()
+            })
         }
     }
+    
+    lazy var activityIndicator:UIActivityIndicatorView = {
+        let ai = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        return ai
+    }()
     
     lazy var imageView:UIImageView = {
         let iv = UIImageView()
@@ -26,6 +33,7 @@ class PhotoCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.contentView.addSubview(self.imageView)
+        self.contentView.addSubview(self.activityIndicator)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -35,6 +43,7 @@ class PhotoCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.imageView.frame = self.contentView.bounds
+        self.activityIndicator.center = CGPointMake(self.bounds.width/2, self.bounds.height/2)
     }
     
     override func prepareForReuse() {
@@ -42,11 +51,13 @@ class PhotoCell: UICollectionViewCell {
         self.imageView.image = nil
     }
     
-    func loadImage(named:String){
+    func loadImage(completion:(image:UIImage)->()){
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)) { () -> Void in
-            let image = UIImage(data: NSData(contentsOfURL: NSURL(string: named)!)!)
+            let image = UIImage(data: NSData(contentsOfURL: NSURL(string: self.photo!.imgUrl!)!)!)
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.imageView.image = image
+                    self.activityIndicator.stopAnimating()
+                    completion(image: image!)
+                    self.setNeedsDisplay()
             })
         }
 
